@@ -352,7 +352,11 @@ GET
       "hint3_image_url": null,
       "analysis": "这是解析",
       "summary": "这是总结",
-      "source": "来源1"
+      "source": "来源1",
+      "formulas": {
+        "formula1": "svg_base64_1",
+        "formula2": "svg_base64_21",
+      }
     },
     {
       "question_id": 2,
@@ -416,6 +420,7 @@ POST
 }
 ```
 
+
 ### 请求体
 
 无
@@ -426,6 +431,17 @@ POST
 | ------ | ------ | -------- |
 | code   | int    | 错误码   |
 | msg    | string | 错误信息 |
+| data    | json | is_complete=1时有信息 |
+
+
+特别的，当is_complete=1时，额外返回本次挑战的概况
+```json
+data = {
+  "total_points": summary.total_points,  
+  "points": cur_points,
+  "correct_num": cur_points
+}
+```
 
 ### 错误码
 
